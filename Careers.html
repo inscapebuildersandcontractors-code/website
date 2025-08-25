@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/normalize_v8.css">
+  <style>
+    @import "css/inscape.css";
+  </style>
+  <script type="text/javascript" src="js/inscape.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+  <title>Inscape Builders - Careers</title>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="includedContent"></div>
+
+    <nav id="nav_container1" class="menu1">
+      <ul id="nav1" class="navmenu">
+          <li><a href="Home.html" id="home" class="menu">Home</a></li>
+          <li><a href="Current.html" id="current" class="menu">Current</a></li>
+          <li><a href="Completed.html" id="completed" class="menu">Completed</a></li>
+          <li><a href="Samples.html" id="samples" class="menu">Samples</a></li>
+          <li><a href="Contactus.html" id="contactus" class="menu">Contact Us</a></li>
+          <li><a href="Careers.html" id="careers" class="selected">Careers</a></li>
+      </ul>
+    </nav>
+
+    <div class="careers-container">
+      <div class="careers-header">
+        <h2>Join Our Team</h2>
+        <h5>We are hiring around Chennai for Site Engineers, Plumbers, Electricians and all civil work dealers. If you are interested, do mention your location and upload your resume.</h5>
+      </div>
+
+      <div class="careers-content">
+        <div class="careers-form-section">
+          <!-- <h3>Apply Now</h3> -->
+          <form id="careersForm" action="https://formspree.io/f/xkgvweaz" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_subject" value="New careers application - Inscape Builders">
+            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden" aria-hidden="true">
+            <div class="form-group">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="fname" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="lname" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="mobileno">Mobile No *</label>
+              <input type="tel" id="mobileno" name="mobileno" required minlength="10" maxlength="10" pattern="\d{10}" inputmode="numeric" placeholder="10-digit mobile number">
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email ID *</label> 
+              <input type="email" name="email" id="email" maxlength="30" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="location">Location *</label>
+              <input type="text" id="location" name="location" required>
+            </div>
+
+            <div class="form-group">
+              <label for="optin">Interested in *</label>
+              <select name="optin" id="optin" required>
+                <option value="">Select an option</option>
+                <option value="site_engineer">Site Engineer</option>
+                <option value="plumber">Plumber</option>
+                <option value="electrician">Electrician</option>
+                <option value="civil_work_dealer">Civil Work Dealer</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <!-- <div class="form-group">
+              <label for="resume">Upload your resume (PDF/DOC/DOCX)</label>
+              <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
+            </div> -->
+            
+            <div class="form-group">
+              <label for="experience">Years of Experience</label>
+              <input type="number" id="experience" name="experience" min="0" max="50">
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Additional Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your experience and why you want to join us..."></textarea>
+            </div>
+            
+            <div class="form-buttons">
+              <input type="submit" value="Send" id="submitBtn">
+              <input type="reset" value="Clear">
+            </div>
+          </form>
+
+          <div id="formStatus" class="form-status" style="display: none;"></div>
+        </div>
+      </div>
+
+      <div class="social-section">
+        <h3>Connect With Us</h3>
+        <div class="social-icons">
+          <a href="tel:+919677615163" title="Call us">
+            <img src="images/call.jpg" alt="Call" />
+          </a>
+          <a href="//api.whatsapp.com/send?phone=+919677615163&text=We want to hire you" title="WhatsApp">
+            <img src="images/WhatsApp.png" alt="WhatsApp" />
+          </a>
+          <a href="https://www.instagram.com/inscape_builders" title="Instagram">
+            <img src="images/insta.png" alt="Instagram" />
+          </a>
+        </div>
+        
+        <!-- <div class="contact-info">
+          <p><strong>📞 Call us directly: +91 96776 15163</strong></p>
+          <p><strong>💬 WhatsApp for quick responses</strong></p>
+          <p><strong>📸 Follow us on Instagram</strong></p>
+        </div> -->
+      </div>
+    </div>
+    
+    <footer>&copy; 2055 Ramya Nagavarapu</footer>
+  </div>
+  
+  <script src="js/navbar.js"></script>
+</body>
+
+</html>

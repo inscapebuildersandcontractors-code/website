@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/normalize_v8.css">
+  <style>
+    @import "css/inscape.css";
+  </style>
+  <script type="text/javascript" src="js/inscape.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <title>Inscape Builders</title>
+</head>
+
+<body data-page="samples">
+  <div id="wrapper">
+    <div id="includedContent"></div>
+    <nav id="nav_container1" class="menu1">
+      <ul id="nav1" class="navmenu">
+          <li><a href="Home.html" id="home" class="menu">Home</a></li>
+          <li><a href="Current.html" id="current" class="menu">Current</a></li>
+          <li><a href="Completed.html" id="completed" class="menu">Completed</a></li>
+          <li><a href="Samples.html" id="samples" class="selected">Samples</a></li>
+          <li><a href="Contactus.html" id="contactus" class="menu">Contact Us</a></li>
+          <li><a href="Careers.html" id="careers" class="menu">Careers</a></li>
+      </ul>
+      <br>
+  </nav>
+    <h2>Our Samples Projects</h2>
+      <nav id="nav_container2" class="main">
+        <article id="mainarticle">
+          <div id="article_columns">
+            <section id="col1">
+              <embed class="pdf" src="images/Samples/G.F AND F.F.pdf" width="640" height="360">
+            </section>
+            <section id="col2">
+              <video width="640" height="360" controls class='responsive_image'>
+                <source src="images/Samples/3D.mp4" type="video/mp4">
+              </video>
+             
+            </section>
+            <section id="col3">
+              <img src="images/Samples/Kundradhur1.jpg" alt="Recent Finished Project" class='responsive_image' />
+            </section>
+          </div>
+          <form id="samplesEmailForm" action="https://formspree.io/f/xpwjaner" method="POST">
+            <input type="hidden" name="_subject" value="Samples request - Inscape Builders">
+            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden" aria-hidden="true">
+            <label>Need more samples?</label><br>
+            <label for="samplesEmail">Share your Email ID:</label>
+            <input type="email" name="email" id="samplesEmail" placeholder="you@example.com" maxlength="120">
+            <input type="submit" value="Send"> <input type="reset" value="Clear">
+            <div id="emailStatus" style="margin-top:10px; display:none;" role="status" aria-live="polite"></div>
+          </form>
+        </article>
+      </nav>
+      <div class="social-section">
+        <h3>Connect With Us</h3>
+        <div class="social-icons">
+          <a href="tel:+919677615163" title="Call us">
+            <img src="images/call.jpg" alt="Call" />
+          </a>
+          <a href="//api.whatsapp.com/send?phone=+919677615163&text=We want to hire you" title="WhatsApp">
+            <img src="images/WhatsApp.png" alt="WhatsApp" />
+          </a>
+          <a href="https://www.instagram.com/inscape_builders" title="Instagram">
+            <img src="images/insta.png" alt="Instagram" />
+          </a>
+        </div>
+        
+      </div>
+    </div>
+      <footer>&copy; 2055 Ramya Nagavarapu</footer>
+  </div>
+  <script src="js/navbar.js"></script>
+
+</body>
+
+</html>
