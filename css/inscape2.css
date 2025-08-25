@@ -1,0 +1,103 @@
+body {
+    font-family: exo, Arial, Helvetica, sans-serif;
+    background-color: #0164A5;
+    text-align: center;
+    color: #ffffff;
+
+}
+@font-face {
+    font-family: chunkfive;
+    src: url('../font/chunkfive/ChunkFive-Regular.otf');
+}
+@font-face {
+    font-family: exo;
+    src: url('../font/exo/Exo-Medium.otf');
+}
+@font-face {
+    font-family: 'introrustg-base2line';
+    src: url('../font/rust/introrustg-base2line-webfont.woff2') format('woff2'),
+         url('../font/rust/introrustg-base2line-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+h1 {
+    color: #ffffff;
+    margin: 1em 0 0 0;
+    font-family: 'introrustg-base2line';
+}
+h2 {
+    color: #bff0f3;
+    margin: 1em 0 0 0;
+    font-family: 'introrustg-base2line';
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    margin: 10px 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    text-align: center;
+}
+
+a.selected {
+    color: #333;
+    background-color: #ccc;
+}
+
+#nav_container1{
+    margin: 10px 0;
+    padding: 0;
+    font-size: 150%;
+  }
+  #nav_container1 ul li a{
+    padding: 7px;
+  }
+#nav1 {
+    text-align: center;
+}
+
+#nav1 li {
+    display: inline-block;
+    width: 140px;
+    margin: 5px;
+}
+
+.menu1 li a:link {
+    color: #fff;
+}
+
+.menu1 li a:visited {
+    color: #fff;
+}
+
+.menu1 li a:hover {
+    color: #fff;
+    background-color: #993;
+}
+
+.menu1 li a:active {
+    color: #f00;
+}
+@media screen and (min-width:700px){
+    #nav1{
+      height: auto;
+      padding: 0;
+      text-align: center;
+      display: flex;
+    }
+    #nav1 li{
+      flex-basis: 20%;
+    }
+  }
+  .logo1{
+    /* height: 800px;
+     width: auto;*/
+     float: left;
+     margin-left: 1em;
+}
