@@ -19,12 +19,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # Install Ruby + Bundler and cache gems
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
           bundler-cache: true
-      - run: bundle install --without development test || true
+
+      # (Optional) sanity logs – helpful if it fails again
+      - run: bundle env
+      - run: bundle info github-pages || true
+
+      # Install and build
+      - run: bundle install --without development test
       - run: bundle exec jekyll build --baseurl "" --trace
+
+      # Include your custom domain in the artifact
+      - run: echo inscapebuilders.in > _site/CNAME
+
+      # Upload the built site
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
