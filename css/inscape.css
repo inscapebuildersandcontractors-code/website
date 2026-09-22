@@ -261,7 +261,7 @@ ul.services {
     /* list-style: square inside; */
     text-align: left;
 }
-li::before {
+ul.services li::before {
     content: '▶';
     position: relative;
     left: 0;
@@ -823,7 +823,6 @@ input[type=text],[type=email], [type=file],select, textarea {
         padding: 0.75rem;
     }
     #nav1 li { width: auto; margin: 0; }
-    #nav1 li::before { content: none; }
     #nav_container1 ul li a {
         box-sizing: border-box;
         min-height: 44px;
