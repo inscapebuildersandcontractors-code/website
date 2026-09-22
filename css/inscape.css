@@ -136,14 +136,20 @@ img {
     /* border-radius: 15px; */
 }
 
-#engrs{
+.engineer-photo {
     padding: 1em;
     margin: 0.5em;
     width: 300px;
     height: 323px;
     align-items: center;
-
 }
+.engineer-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+.engineer-profile + .engineer-profile { margin-top: 1.5rem; }
 
 .responsive_image {
     max-width: 100%;
@@ -303,6 +309,47 @@ li::before {
     /* flex-direction: column; */
     /* gap: 1rem; */
     justify-content: space-evenly;
+}
+
+body[data-page="home"] #article_columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+}
+body[data-page="home"] #article_columns > section {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+body[data-page="home"] #article_columns fieldset {
+    margin: 0;
+}
+body[data-page="home"] .hero-image {
+    min-height: 220px;
+}
+body[data-page="home"] .hero-text {
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: auto;
+}
+@media (max-width: 900px) {
+    body[data-page="home"] #article_columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    body[data-page="home"] #col3 {
+        grid-column: 1 / -1;
+    }
+}
+@media (max-width: 650px) {
+    body[data-page="home"] #article_columns {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    body[data-page="home"] #col3 {
+        grid-column: auto;
+    }
 }
 
 #col1,
@@ -766,4 +813,21 @@ input[type=text],[type=email], [type=file],select, textarea {
     margin-bottom: 8px;
     resize: vertical;
   }
+
+@media (max-width: 650px) {
+    #nav_container1 { font-size: 1rem; }
+    #nav1 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+    #nav1 li { width: auto; margin: 0; }
+    #nav1 li::before { content: none; }
+    #nav_container1 ul li a {
+        box-sizing: border-box;
+        min-height: 44px;
+        padding: 0.5rem;
+    }
+}
   
