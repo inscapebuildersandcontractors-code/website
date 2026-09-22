@@ -80,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       mobile.addEventListener('blur', function(){
         sanitizePhone(this);
-        if (this.value.length !== 10) { this.reportValidity(); }
       });
     }
 
@@ -93,9 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
           this.setCustomValidity('');
         }
         updateSubmitState();
-      });
-      email.addEventListener('blur', function(){
-        if (!validE(this.value)) { this.reportValidity(); }
       });
     }
 
