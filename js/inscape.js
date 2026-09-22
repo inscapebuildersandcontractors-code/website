@@ -256,7 +256,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var cfExp = careersForm.querySelector('#experience');
     if (cfF) { cfF.addEventListener('blur', function(){ this.value = toTitleCase(this.value); }); }
     if (cfL) { cfL.addEventListener('blur', function(){ this.value = toTitleCase(this.value); }); }
-    if (cfM) { cfM.addEventListener('input', function(){ sanitizePhone10(this); }); cfM.addEventListener('blur', function(){ sanitizePhone10(this); if (this.value.length !== 10) this.reportValidity(); }); }
+    if (cfM) {
+      cfM.addEventListener('input', function(){ sanitizePhone10(this); });
+      cfM.addEventListener('blur', function(){ sanitizePhone10(this); });
+    }
     if (cfE) { cfE.addEventListener('input', function(){ if (!validE(this.value)) this.setCustomValidity('Please enter a valid email'); else this.setCustomValidity(''); }); }
     if (cfExp) { cfExp.addEventListener('input', function(){ if (this.value !== '' && (this.value < 0 || this.value > 50)) { this.setCustomValidity('Experience must be between 0 and 50'); } else { this.setCustomValidity(''); } }); }
 

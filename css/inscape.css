@@ -137,11 +137,12 @@ img {
 }
 
 .engineer-photo {
-    padding: 1em;
-    margin: 0.5em;
-    width: 300px;
-    height: 323px;
-    align-items: center;
+    display: block;
+    box-sizing: border-box;
+    width: min(100%, 250px);
+    height: auto;
+    padding: 0;
+    margin: 0 auto 0.75rem;
 }
 .engineer-profile {
     display: flex;
@@ -333,10 +334,17 @@ body[data-page="home"] #article_columns > section {
     min-width: 0;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 1.5rem;
 }
 body[data-page="home"] #article_columns fieldset {
+    box-sizing: border-box;
+    width: 100%;
     margin: 0;
+}
+body[data-page="home"] .engineer-photo {
+    width: min(100%, 250px);
+    height: auto;
 }
 body[data-page="home"] .hero-image {
     box-sizing: border-box;
