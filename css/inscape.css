@@ -40,6 +40,32 @@ body {
 .form-message--warning { color: #856404; background: #fff3cd; border-color: #ffeeba; }
 .form-message--error { color: #721c24; background: #f8d7da; border-color: #f5c6cb; }
 
+.project-cta {
+    padding: 2rem 1rem;
+    background: #e3f5f9;
+    text-align: center;
+}
+.project-cta h2 { margin: 0; }
+.project-cta p { margin: 0.75rem 0 1.25rem; }
+.project-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.project-cta-button {
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    background: #0164a5;
+    color: #fff;
+    font-weight: bold;
+}
+.project-cta-button:hover,
+.project-cta-button:focus-visible { background: #004d80; color: #fff; }
+.project-cta-link { text-decoration: underline; }
+
 #wrapper {
     width: 100%;
     /* max-width: 1170px; */
@@ -335,7 +361,7 @@ fieldset{
 }
 .hero-image {
     display: flex;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/Home/heron.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/Home/heron.webp");
     height: 35%;
     background-position: center;
     background-repeat: no-repeat;
