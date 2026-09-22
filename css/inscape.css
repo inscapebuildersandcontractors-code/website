@@ -324,6 +324,26 @@ ul.services li::before {
     justify-content: space-evenly;
 }
 
+body:is([data-page="current"], [data-page="completed"]) #article_columns {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+body:is([data-page="current"], [data-page="completed"]) #article_columns > section {
+    box-sizing: border-box;
+    flex: none;
+    width: 100%;
+    min-width: 0;
+}
+body:is([data-page="current"], [data-page="completed"]) #article_columns .responsive_image {
+    display: block;
+    box-sizing: border-box;
+    width: min(100%, 640px);
+    height: auto;
+    padding: 0;
+    margin: 0.75rem auto;
+}
+
 body[data-page="home"] #article_columns {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
