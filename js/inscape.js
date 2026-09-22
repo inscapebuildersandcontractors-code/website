@@ -50,11 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (value.length > 10) { value = value.slice(0,10); }
       input.value = value;
     }
-    function updateSubmitState() {
-      var btn = document.getElementById('submitBtn');
-      if (btn) { btn.disabled = !contactForm.checkValidity(); }
-    }
-
     // Field refs
     var fname = document.getElementById('fname');
     var lname = document.getElementById('lname');
@@ -76,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           this.setCustomValidity('');
         }
-        updateSubmitState();
       });
       mobile.addEventListener('blur', function(){
         sanitizePhone(this);
@@ -91,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           this.setCustomValidity('');
         }
-        updateSubmitState();
       });
     }
 
@@ -104,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
       counter.setAttribute('aria-live', 'polite');
       subject.parentNode.appendChild(counter);
       var updateCount = function(){ counter.textContent = (subject.value.length || 0) + ' characters'; };
-      subject.addEventListener('input', function(){ updateCount(); updateSubmitState(); });
+      subject.addEventListener('input', updateCount);
       updateCount();
     }
 
@@ -121,11 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
         subject.placeholder = ph;
       });
     }
-
-    // Initial submit state
-    contactForm.addEventListener('input', updateSubmitState);
-    contactForm.addEventListener('change', updateSubmitState);
-    updateSubmitState();
 
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
