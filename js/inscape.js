@@ -4,6 +4,25 @@ function validE(e) {
     const patt = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return patt.test(e);
   }
+
+function showFormStatus(container, kind, message) {
+  var paragraph = document.createElement('p');
+  paragraph.className = 'form-message form-message--' + kind;
+  paragraph.textContent = message;
+  container.replaceChildren(paragraph);
+  container.style.display = 'block';
+}
+
+function formResponse(response) {
+  if (response.ok) return { ok: true };
+  return response.json().catch(function() { return null; }).then(function(data) {
+    var errors = data && Array.isArray(data.errors) ? data.errors : [];
+    return {
+      ok: false,
+      message: errors.map(function(error) { return error.message; }).filter(Boolean).join(' ') || 'Submission failed'
+    };
+  });
+}
   
 //   const e = "example@domain.com";
 //   if (validE(e)) {
@@ -14,6 +33,10 @@ function validE(e) {
 
 // Page script: Contact form (Contactus.html)
 document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('[data-current-year]').forEach(function(year) {
+    year.textContent = new Date().getFullYear();
+  });
+
   var contactForm = document.getElementById('contactForm');
   if (contactForm) {
     // Helpers
@@ -104,6 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initial submit state
+    contactForm.addEventListener('input', updateSubmitState);
+    contactForm.addEventListener('change', updateSubmitState);
     updateSubmitState();
 
     contactForm.addEventListener('submit', function(e) {
@@ -116,8 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       submitBtn.disabled = true;
       submitBtn.value = 'Sending...';
-      formStatus.style.display = 'block';
-      formStatus.innerHTML = '<p style="color: #0164A5; background-color: #d1ecf1; border: 1px solid #bee5eb; padding: 15px; border-radius: 6px;">⏳ Sending your message...</p>';
+      showFormStatus(formStatus, 'info', 'Sending your message...');
 
       var formData = new FormData(contactForm);
 
@@ -126,18 +150,17 @@ document.addEventListener('DOMContentLoaded', function() {
         body: formData,
         headers: { 'Accept': 'application/json' }
       })
-      .then(function(response) { return response.ok ? null : response.json().catch(function(){ return null; }); })
-      .then(function(err) {
-        if (!err) {
-          formStatus.innerHTML = '<p style="color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; padding: 15px; border-radius: 6px;">✅ Your message has been sent successfully! We will contact you within 48 hours.</p>';
+      .then(formResponse)
+      .then(function(result) {
+        if (result.ok) {
+          showFormStatus(formStatus, 'success', 'Your message has been sent successfully! We will contact you within 48 hours.');
           contactForm.reset();
         } else {
-          var msg = (err && err.errors && err.errors.length) ? err.errors.map(function(e){ return e.message; }).join(' ') : 'Submission failed';
-          formStatus.innerHTML = '<p style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 15px; border-radius: 6px;">❌ There was an error sending your message: ' + msg + '. Please try again or contact us directly.</p>';
+          showFormStatus(formStatus, 'error', 'There was an error sending your message: ' + result.message + '. Please try again or contact us directly.');
         }
       })
       .catch(function() {
-        formStatus.innerHTML = '<p style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 15px; border-radius: 6px;">❌ Network error. Please try again.</p>';
+        showFormStatus(formStatus, 'error', 'Network error. Please try again.');
       })
       .finally(function() {
         submitBtn.disabled = false;
@@ -178,37 +201,31 @@ document.addEventListener('DOMContentLoaded', function() {
       var v = samplesEmail ? (samplesEmail.value || '').trim() : '';
       if (v === '') {
         if (status) {
-          status.style.display = 'block';
-          status.innerHTML = '<p style="color:#856404; background:#fff3cd; border:1px solid #ffeeba; padding:10px; border-radius:6px;">ℹ️ Email not provided. Skipping submission.</p>';
+          showFormStatus(status, 'warning', 'Please enter your email address.');
         }
         return;
       }
       var submitBtn = samplesForm.querySelector('input[type="submit"]');
       if (submitBtn) { submitBtn.disabled = true; submitBtn.value = 'Sending...'; }
       if (status) {
-        status.style.display = 'block';
-        status.innerHTML = '<p style="color:#0164A5; background:#d1ecf1; border:1px solid #bee5eb; padding:10px; border-radius:6px;">⏳ Sending...</p>';
+        showFormStatus(status, 'info', 'Sending...');
       }
       var data = new FormData(samplesForm);
       fetch(samplesForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
-        .then(function(response){
-          if (response.ok) return null;
-          return response.json().catch(function(){ return null; });
-        })
-        .then(function(err){
+        .then(formResponse)
+        .then(function(result){
           if (status) {
-            if (!err) {
-              status.innerHTML = '<p style="color:#155724; background:#d4edda; border:1px solid #c3e6cb; padding:10px; border-radius:6px;">✅ Thanks! We\'ll email you more samples soon.</p>';
+            if (result.ok) {
+              showFormStatus(status, 'success', 'Thanks! We\'ll email you more samples soon.');
               samplesForm.reset();
             } else {
-              var msg = (err && err.errors && err.errors.length) ? err.errors.map(function(e){return e.message;}).join(' ') : 'Submission failed';
-              status.innerHTML = '<p style="color:#721c24; background:#f8d7da; border:1px solid #f5c6cb; padding:10px; border-radius:6px;">❌ ' + msg + '</p>';
+              showFormStatus(status, 'error', result.message);
             }
           }
         })
         .catch(function(){
           if (status) {
-            status.innerHTML = '<p style="color:#721c24; background:#f8d7da; border:1px solid #f5c6cb; padding:10px; border-radius:6px;">❌ Network error. Please try again.</p>';
+            showFormStatus(status, 'error', 'Network error. Please try again.');
           }
         })
         .finally(function(){
@@ -250,22 +267,20 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!submitBtn || !formStatus) return;
       submitBtn.disabled = true;
       submitBtn.value = 'Submitting...';
-      formStatus.style.display = 'block';
-      formStatus.innerHTML = '<p style="color: #0164A5; background-color: #d1ecf1; border: 1px solid #bee5eb; padding: 15px; border-radius: 6px;">⏳ Submitting your application...</p>';
+      showFormStatus(formStatus, 'info', 'Submitting your application...');
       var formData = new FormData(careersForm);
       fetch(careersForm.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
-        .then(function(response){ return response.ok ? null : response.json().catch(function(){ return null; }); })
-        .then(function(err){
-          if (!err) {
-            formStatus.innerHTML = '<p style="color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; padding: 15px; border-radius: 6px;">✅ Your application has been submitted successfully! We will contact you soon.</p>';
+        .then(formResponse)
+        .then(function(result){
+          if (result.ok) {
+            showFormStatus(formStatus, 'success', 'Your application has been submitted successfully! We will contact you soon.');
             careersForm.reset();
           } else {
-            var msg = (err && err.errors && err.errors.length) ? err.errors.map(function(e){return e.message;}).join(' ') : 'Submission failed';
-            formStatus.innerHTML = '<p style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 15px; border-radius: 6px;">❌ ' + msg + '</p>';
+            showFormStatus(formStatus, 'error', result.message);
           }
         })
         .catch(function(){
-          formStatus.innerHTML = '<p style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 15px; border-radius: 6px;">❌ Network error. Please try again.</p>';
+          showFormStatus(formStatus, 'error', 'Network error. Please try again.');
         })
         .finally(function(){
           submitBtn.disabled = false;

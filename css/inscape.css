@@ -30,6 +30,16 @@ body {
 
 }
 
+.form-message {
+    padding: 15px;
+    border: 1px solid;
+    border-radius: 6px;
+}
+.form-message--info { color: #0164a5; background: #d1ecf1; border-color: #bee5eb; }
+.form-message--success { color: #155724; background: #d4edda; border-color: #c3e6cb; }
+.form-message--warning { color: #856404; background: #fff3cd; border-color: #ffeeba; }
+.form-message--error { color: #721c24; background: #f8d7da; border-color: #f5c6cb; }
+
 #wrapper {
     width: 100%;
     /* max-width: 1170px; */
@@ -731,4 +741,3 @@ input[type=text],[type=email], [type=file],select, textarea {
     resize: vertical;
   }
   
-
