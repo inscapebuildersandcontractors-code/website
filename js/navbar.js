@@ -34,3 +34,14 @@ $(function(){
     //   }
     // });
   });
+
+  var menuToggle = document.querySelector('.menu-toggle');
+  var mobileNav = document.getElementById('nav1');
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener('click', function() {
+      var expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!expanded));
+      mobileNav.classList.toggle('is-open', !expanded);
+    });
+    document.body.classList.add('has-menu-toggle');
+  }
